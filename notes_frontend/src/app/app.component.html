@@ -1,6 +1,25 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-  <p style="margin-top:12px;color:#424242;text-align:center;max-width:640px;">
-    Angular frontend is configured with environment files, API and Auth services, and an auth guard. Replace placeholder routes with actual components.
-  </p>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" routerLink="/">
+        <span class="brand-badge">N</span>
+        <span>{{ title }}</span>
+      </a>
+      <div class="top-actions">
+        <ng-container *ngIf="(auth.user$ | async) as user; else guest">
+          <span class="badge" title="Logged in as">{{ user.email }}</span>
+          <button class="btn" (click)="goNotes()">My Notes</button>
+          <button class="btn" (click)="logout()">Logout</button>
+        </ng-container>
+        <ng-template #guest>
+          <a class="btn" routerLink="/login">Login</a>
+          <a class="btn primary" routerLink="/register">Register</a>
+        </ng-template>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <router-outlet></router-outlet>
+  </main>
 </div>
