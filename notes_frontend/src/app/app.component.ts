@@ -17,13 +17,17 @@ export class AppComponent {
   private router = inject(Router);
 
   // PUBLIC_INTERFACE
-  // Navigate to the notes list
+  /**
+   * Navigate to the notes list.
+   */
   goNotes() {
     this.router.navigate(['/notes']).catch(() => {});
   }
 
   // PUBLIC_INTERFACE
-  // Log the user out and redirect to login
+  /**
+   * Log the user out and redirect to login.
+   */
   logout() {
     this.auth.logout();
     this.router.navigate(['/login']).catch(() => {});
